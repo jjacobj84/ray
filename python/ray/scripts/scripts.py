@@ -927,7 +927,6 @@ def start(
         node = ray._private.node.Node(
             ray_params, head=False, shutdown_at_exit=block, spawn_reaper=block
         )
-
         temp_dir = node.get_temp_dir_path()
 
         # Ray and Python versions should probably be checked before
