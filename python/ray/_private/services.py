@@ -582,7 +582,7 @@ def extract_ip_port(bootstrap_address: str):
         raise ValueError(
             f"Malformed address {bootstrap_address}. " f"Expected '<host>:<port>'."
         )
-    ip, _, port = bootstrap_address.rpartition(":")
+    ip, port = bootstrap_address.rsplit(":", 1)
     try:
         port = int(port)
     except ValueError:
@@ -609,8 +609,8 @@ def resolve_ip_for_localhost(address: str):
     """
     if not address:
         raise ValueError(f"Malformed address: {address}")
-    address_parts = address.split(":")
-    if address_parts[0] == "127.0.0.1" or address_parts[0] == "localhost":
+    ip, port = address.rsplit(":", 1)
+    if ip == "127.0.0.1" or ip == "localhost":
         # Make sure localhost isn't resolved to the loopback ip
         ip_address = get_node_ip_address()
         return ":".join([ip_address] + address_parts[1:])

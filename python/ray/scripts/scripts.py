@@ -767,7 +767,6 @@ def start(
                     "Please specify a different port using the `--port`"
                     " flag of `ray start` command."
                 )
-
         node = ray._private.node.Node(
             ray_params, head=True, shutdown_at_exit=block, spawn_reaper=block
         )
@@ -928,6 +927,7 @@ def start(
         node = ray._private.node.Node(
             ray_params, head=False, shutdown_at_exit=block, spawn_reaper=block
         )
+
         temp_dir = node.get_temp_dir_path()
 
         # Ray and Python versions should probably be checked before
