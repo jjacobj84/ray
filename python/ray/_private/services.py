@@ -628,7 +628,7 @@ def node_ip_address_from_perspective(address: str):
     Returns:
         The IP address by which the local node can be reached from the address.
     """
-    ip_address, port = address.split(":")
+    ip_address, port = address.rsplit(":", 1)
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         # This command will raise an exception if there is no internet
