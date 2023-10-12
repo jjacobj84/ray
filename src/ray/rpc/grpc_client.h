@@ -65,9 +65,9 @@ inline std::shared_ptr<grpc::Channel> BuildChannel(
   boost::asio::ip::address addr = boost::asio::ip::address().from_string(address);
   RAY_CHECK (addr.is_v4() || addr.is_v6());
   if (addr.is_v6()) {
-    grpc_address = "ipv6:[" + address + "]"
+    grpc_address = "ipv6:[" + address + "]";
   } else {
-    grpc_address = address
+    grpc_address = address;
   }
   if (::RayConfig::instance().USE_TLS()) {
     std::string server_cert_file = std::string(::RayConfig::instance().TLS_SERVER_CERT());
