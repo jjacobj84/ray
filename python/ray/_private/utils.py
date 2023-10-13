@@ -1480,7 +1480,7 @@ def validate_namespace(namespace: str):
         )
 
 
-def _build_grpc_address(address: str):
+def build_grpc_address(address: str):
     """
     Given an address string, return address supported for IPv4 and IPv6
     IPv4 format : <address>:<port>
@@ -1515,7 +1515,7 @@ def init_grpc_channel(
         "grpc.keepalive_timeout_ms", ray._config.grpc_client_keepalive_timeout_ms()
     )
     options = options_dict.items()
-    gcs_address = _build_grpc_address(address)
+    gcs_address = build_grpc_address(address)
     if os.environ.get("RAY_USE_TLS", "0").lower() in ("1", "true"):
         server_cert_chain, private_key, ca_cert = load_certs_from_env()
         credentials = grpc.ssl_channel_credentials(
